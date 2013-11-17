@@ -2,16 +2,21 @@ import init.pyramid.usb.rc
 
 on init
     mkdir /mnt/media_rw/sdcard0 0700 media_rw media_rw
-    mkdir /storage/sdcard0 0700 root root
+    mkdir /storage 0550 system sdcard_r
+    mkdir /storage/sdcard0 0700 system system
     mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+
+    mkdir /storage/sdcard0 0700 root root
     mkdir /storage/usbdisk 0700 root root
+
+    export EXTERNAL_STORAGE /storage/sdcard0:/storage/usbdisk0
     
     # for backwards compatibility
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
-    export EXTERNAL_STORAGE /storage/sdcard0
-    symlink /storage/usbdisk /usbdisk
-    symlink /storage/usbdisk /mnt/usbdisk
+
+    symlink /storage/usbdisk /usbdisk0
+    symlink /storage/usbdisk /mnt/usbdisk0
 
     # load msm8660 firmware so things have time to initialize
     rm /vendor
@@ -201,6 +206,10 @@ service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
 service fuse_sdcard0 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard0 /storage/sdcard0
     class late_start
     disabled
+
+service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
+      class late_start
+      disabled
 
 service hdmid /system/bin/hdmid
     class main
