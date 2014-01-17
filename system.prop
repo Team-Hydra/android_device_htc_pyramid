@@ -27,6 +27,7 @@ ro.ril.hsdpa.category=10
 ro.ril.hsupa.category=6  
 ro.ril.hsxpa=3
 ro.ril.set.mtu1472=1
+ro.ril.disable.mcc.filter=1
 wifi.interface=wlan0
 wifi.supplicant_scan_interval=160
 #
