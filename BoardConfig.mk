@@ -29,7 +29,7 @@ TARGET_BOOTLOADER_BOARD_NAME := pyramid
 # Kernel [Settings]
 BOARD_KERNEL_BASE := 0x48000000
 BOARD_KERNEL_PAGE_SIZE := 2048
-BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=pyramid no_console_suspend=1 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0 androidboot.hardware=pyramid no_console_suspend=1
 
 # Kernel [Build]
 TARGET_KERNEL_CONFIG := pyramid_defconfig
@@ -45,6 +45,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := pyramid
 
 # RIL
 BOARD_USES_LEGACY_RIL := true
+BOARD_USE_NEW_LIBRIL_HTC := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB = device/htc/pyramid/ramdisk/fstab.pyramid
